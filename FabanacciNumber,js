@@ -1,4 +1,4 @@
-//Fabanacci Number
+//Fabanacci Number--Dynamic Coding
 var fib = function (n) {
   // take out the edge case when n=0, f(n) = 0， f(1) = 1;
   // create two variable called n1, n2, n1 < n2

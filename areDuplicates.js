@@ -1,4 +1,4 @@
-//ucademy- Multiple pointers, need to be sorted array
+// Multiple pointers, need to be sorted array
 function averagePair(a, target) {
   // two pointers
   // create two pointers, i = 0, j = a.length -1
