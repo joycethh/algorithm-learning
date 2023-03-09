@@ -19,4 +19,16 @@ const merge = (first, second) => {
   return result;
 };
 
-merge([1, 7, 8], [3, 4, 5, 10]);
+// merge([1, 7, 8], [3, 4, 5, 10]);
+
+const mergeSort = (arr) => {
+  if (arr.length <= 1) return arr;
+  let mid = Math.floor(arr.length / 2);
+  let left = mergeSort(arr.slice(0, mid));
+  let right = mergeSort(arr.slice(mid));
+  const result = merge(left, right);
+  console.log("result", result);
+  return merge(left, right);
+};
+
+mergeSort([1, 7, 8, 3, 4, 5, 10]);
