@@ -16,3 +16,21 @@ var isHappy = function (n) {
     return isHappy(sumOfSquaresOfDigits(n));
   }
 };
+
+// hash set to detect cycle
+var isHappy = function (n) {
+  const sumOfSquaresOfDigits = (n) => {
+    return String(n)
+      .split("")
+      .reduce((sum, digit) => sum + digit * digit, 0);
+  };
+
+  let seen = new Set();
+
+  while (n !== 1 && !seen.has(n)) {
+    seen.add(n);
+    n = sumOfSquaresOfDigits(n);
+  }
+
+  return n === 1;
+};
