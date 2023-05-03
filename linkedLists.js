@@ -69,10 +69,23 @@ class LinkedList {
     }
     return tmp;
   }
+  unshift(val) {
+    var myNode = new Node(val);
+    if (!this.head) {
+      // if there is no head property, set the head and tail to be the newly created node.
+      this.head = myNode;
+      this.tail = this.head;
+    } else {
+      myNode.next = this.head; //otherwise, set the newly created node's next property to be the current head propery on the list
+      this.head = myNode; //set the head propery on the list to be the newly created node
+    }
+    this.length++;
+    return this;
+  }
 }
 
 var myList = new LinkedList();
-myList.push("Hello");
+// myList.push("Hello");
 //  the result will be - LinkedList {
 //     head: Node {val: "Hello", next: null},
 //     length: 1,
