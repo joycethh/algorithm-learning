@@ -37,6 +37,38 @@ class LinkedList {
     this.length++;
     return this; //return the list
   }
+  pop() {
+    if (this.length === 0) return undefined;
+    //if(! this.head) return undefined;
+
+    //traverse the list to find the tail and the one before the tail
+    // 1. start with two vars, one is pre to the tail, which will be the new tail
+    // 2. the other val is the tail which we will be removed and returned
+    var current = this.head;
+    var newTail = current;
+    while (current.next) {
+      newTail = current;
+      current = current.next;
+    }
+    this.tail = newTail;
+    this.tail.next = null;
+    this.length--;
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+    return current;
+  }
+  shift() {
+    if (this.length === 0) return undefined;
+    var tmp = this.head; //tmp is the current head that will be removed;
+    this.head = tmp.next;
+    this.length--;
+    if (this.length === 0) {
+      this.tail = null;
+    }
+    return tmp;
+  }
 }
 
 var myList = new LinkedList();
