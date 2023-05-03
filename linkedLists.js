@@ -92,6 +92,12 @@ class LinkedList {
     }
     return current;
   }
+  set(idx, val) {
+    var selected = this.get(idx);
+    if (selected === null) return false;
+    selected.val = val;
+    return true;
+  }
 }
 
 var myList = new LinkedList();
