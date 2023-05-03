@@ -82,6 +82,16 @@ class LinkedList {
     this.length++;
     return this;
   }
+  get(idx) {
+    if (idx < 0 || idx >= this.length) return null;
+    var count = 0;
+    var current = this.head;
+    while (count !== idx) {
+      current = current.next;
+      count++;
+    }
+    return current;
+  }
 }
 
 var myList = new LinkedList();
