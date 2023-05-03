@@ -98,6 +98,23 @@ class LinkedList {
     selected.val = val;
     return true;
   }
+  insert(idx, val) {
+    if (idx < 0 || idx > this.length) return false;
+    if (idx === this.length) {
+      this.push(val);
+      return true;
+    }
+    if (idx === 0) return !!this.unshift(val);
+
+    var myNewNode = new Node(val);
+    var pre = this.get(idx - 1);
+    var tmp = pre.next;
+    pre.next = myNewNode;
+    myNewNode.next = tmp;
+    this.length++;
+    console.log("insert", this);
+    return true;
+  }
 }
 
 var myList = new LinkedList();
