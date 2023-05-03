@@ -115,6 +115,16 @@ class LinkedList {
     console.log("insert", this);
     return true;
   }
+  remove(idx) {
+    if (idx < 0 || idx > this.length) return undefined;
+    if (idx === this.length) return this.pop();
+    if (idx === 0) return this.shift();
+    var pre = this.get(idx - 1);
+    var selectedToRemove = this.get(idx);
+    pre.next = selectedToRemove.next;
+    this.length--;
+    return selectedToRemove;
+  }
 }
 
 var myList = new LinkedList();
