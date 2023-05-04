@@ -117,13 +117,29 @@ class LinkedList {
   }
   remove(idx) {
     if (idx < 0 || idx > this.length) return undefined;
-    if (idx === this.length) return this.pop();
+    if (idx === this.length) return this.pop(); //??? this.length - 1
     if (idx === 0) return this.shift();
     var pre = this.get(idx - 1);
-    var selectedToRemove = this.get(idx);
+    var selectedToRemove = pre.next;
     pre.next = selectedToRemove.next;
     this.length--;
     return selectedToRemove;
+  }
+  reverse() {
+    var node = this.head; // store the current head
+    this.head = this.tail; //swap the head and tail
+    this.tail = node;
+
+    var next; // original direction next
+    var pre = null; // reversed direction pre
+
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = pre;
+      pre = node;
+      node = next;
+    }
+    return this;
   }
 }
 
