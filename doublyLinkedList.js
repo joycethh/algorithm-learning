@@ -68,6 +68,27 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+  get(idx) {
+    if (idx < 0 || idx >= this.length) return null;
+    var middle = Math.floor(this.length / 2);
+    if (idx <= middle) {
+      var count = 0;
+      var current = this.head;
+      while (count !== idx) {
+        current = current.next;
+        count++;
+      }
+      return current;
+    } else {
+      var count = this.length - 1;
+      var current = this.tail;
+      while (count !== idx) {
+        current = current.prev;
+        count--;
+      }
+      return current;
+    }
+  }
 }
 var myDoubleList = new DoublyLinkedList();
 myDoubleList.push("10");
