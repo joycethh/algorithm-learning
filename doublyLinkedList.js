@@ -78,7 +78,6 @@ class DoublyLinkedList {
         current = current.next;
         count++;
       }
-      return current;
     } else {
       var count = this.length - 1;
       var current = this.tail;
@@ -86,8 +85,8 @@ class DoublyLinkedList {
         current = current.prev;
         count--;
       }
-      return current;
     }
+    return current;
   }
 }
 var myDoubleList = new DoublyLinkedList();
