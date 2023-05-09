@@ -5,7 +5,7 @@ class Node {
   }
 }
 
-// we are implementing stacks with SSL,
+// we are implementing stacks with SLL,
 // for the time complexsity, I will add & remove from the beganiing,
 // as I don't want to illterate the entire link to remove from the end, I want instant time pop
 // so actually the methods are UNSHIFT & SHIFT
@@ -45,6 +45,9 @@ class Stack {
 }
 
 const stacks = new Stack();
+// we are implement queue with SLL,
+// there are two main operations on the queue -  add & remove,
+// since remove the end will require a literation to the entire SLL, so we remove from the begaining
 
 class Queque {
   constructor() {
