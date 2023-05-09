@@ -15,7 +15,7 @@ class Stack {
   constructor() {
     this.first = null;
     this.last = null;
-    this.length = 0;
+    this.size = 0;
   }
 
   push(val) {
@@ -28,7 +28,20 @@ class Stack {
       node.next = this.first;
       this.first = node;
     }
-    this.length++;
-    return this;
+    return ++this.size;
+  }
+
+  pop() {
+    //shift
+    if (this.size === 0) return undefined;
+    const remove = this.first;
+    this.first = remove.next;
+    this.size--;
+    if (this.size === 1) {
+      this.last = null;
+    }
+    return remove;
   }
 }
+
+const stacks = new Stack();
