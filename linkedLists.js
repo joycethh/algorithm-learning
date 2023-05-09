@@ -64,7 +64,7 @@ class LinkedList {
     var tmp = this.head; //tmp is the current head that will be removed;
     this.head = tmp.next;
     this.length--;
-    if (this.length === 0) {
+    if (this.length === 1) {
       this.tail = null;
     }
     return tmp;

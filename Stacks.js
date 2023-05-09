@@ -7,7 +7,7 @@ class Node {
 
 // we are implementing stacks with SSL,
 // for the time complexsity, I will add & remove from the beganiing,
-// as I don't want to illterate the entire link to remove from the end,
+// as I don't want to illterate the entire link to remove from the end, I want instant time pop
 // so actually the methods are UNSHIFT & SHIFT
 // but i will still call them PUSH & POP
 
@@ -33,14 +33,14 @@ class Stack {
 
   pop() {
     //shift
-    if (this.size === 0) return undefined;
+    if (!this.first) return null;
     const remove = this.first;
-    this.first = remove.next;
-    this.size--;
-    if (this.size === 1) {
+    if (this.first === this.last) {
       this.last = null;
     }
-    return remove;
+    this.first = remove.next;
+    this.size--;
+    return remove.val;
   }
 }
 
