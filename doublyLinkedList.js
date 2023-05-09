@@ -94,6 +94,20 @@ class DoublyLinkedList {
     selected.val = val;
     return true;
   }
+  insert(idx, val) {
+    if (idx < 0 || idx > this.length) return false;
+    if (idx === this.length) return !!this.push(val);
+    var newNode = new Node(val);
+    var prev = this.get(idx - 1);
+    var tmp = prev.next;
+    prev.next = newNode;
+    newNode.prev = prev;
+    newNode.next = tmp;
+    tmp.prev = newNode;
+    this.length++;
+    console.log("insert", this);
+    return true;
+  }
 }
 var myDoubleList = new DoublyLinkedList();
 myDoubleList.push("10");
