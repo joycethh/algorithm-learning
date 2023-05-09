@@ -19,7 +19,7 @@ class Stack {
   }
 
   push(val) {
-    //unshift
+    //LL unshift
     var node = new Node(val);
     if (!this.first) {
       this.first = node;
@@ -32,7 +32,7 @@ class Stack {
   }
 
   pop() {
-    //shift
+    //LL shift
     if (!this.first) return null;
     const remove = this.first;
     if (this.first === this.last) {
@@ -46,13 +46,14 @@ class Stack {
 
 const stacks = new Stack();
 
-class queque {
+class Queque {
   constructor() {
     this.first = null;
     this.last = null;
     this.size = 0;
   }
   enqueue(val) {
+    // LL push
     const newNode = new Node(val);
     if (!this.first) {
       this.first = newNode;
@@ -63,5 +64,17 @@ class queque {
     }
     return ++this.size;
   }
-  dequeue() {}
+  dequeue() {
+    //LL shift
+    if (!this.first) return null;
+    var current = this.first;
+    if (this.first === this.last) {
+      this.last = null;
+    }
+    this.first = current.next;
+    this.size--;
+    return current.val;
+  }
 }
+
+const myQueue = new Queque();
