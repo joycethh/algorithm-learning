@@ -116,8 +116,8 @@ class LinkedList {
     return true;
   }
   remove(idx) {
-    if (idx < 0 || idx > this.length) return undefined;
-    if (idx === this.length) return this.pop(); //??? this.length - 1
+    if (idx < 0 || idx >= this.length) return undefined;
+    if (idx === this.length - 1) return this.pop();
     if (idx === 0) return this.shift();
     var pre = this.get(idx - 1);
     var selectedToRemove = pre.next;
