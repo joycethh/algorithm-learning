@@ -20,7 +20,6 @@ class BST {
     this.insertNode(this.root, newNode);
     return this;
   }
-
   insertNode(node, newNode) {
     if (newNode.val < node.val) {
       //goes to the left
@@ -38,8 +37,17 @@ class BST {
       }
     }
   }
+  //Search a node, Recurrsivly
+  search(val) {
+    if (!this.root) return undefined;
+  }
+}
 
-  //Insert with iterativly
+class BSTSIterate {
+  constructor() {
+    this.root = null;
+  }
+  //Insert a node, Iterativly
   insertIterate(value) {
     const newNode = new Node(value);
     if (!this.root) {
@@ -48,8 +56,8 @@ class BST {
     }
     let current = this.root;
     while (true) {
-      if (value === current.value) return undefined;
-      if (value < current.value) {
+      if (value === current.val) return undefined;
+      if (value < current.val) {
         //goes to the left
         if (current.left === null) {
           current.left = newNode;
@@ -65,6 +73,27 @@ class BST {
       }
     }
   }
-}
 
+  //Search a node, Iterativly
+  searchIterate(val) {
+    if (!this.root) return undefined;
+    if (val === this.root.val) return val;
+    let current = this.root;
+    while (true) {
+      if (val === current.val) return val;
+      if (val < current.val) {
+        //search from the left
+        if (current.val === val) {
+          return val;
+        }
+        current = current.left;
+      } else {
+        if (current.val === val) {
+          return val;
+        }
+        current = current.right;
+      }
+    }
+  }
+}
 const bst = new BST();
