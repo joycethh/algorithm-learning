@@ -40,6 +40,28 @@ class BST {
   //Search a node, Recurrsivly
   search(val) {
     if (!this.root) return undefined;
+    if (val === this.root.val) return this.root;
+    searchNode(this.root, val);
+    return val;
+  }
+  searchNode(node, val) {
+    if (node.val > val) {
+      //search left
+      if (node.val === val) {
+        console.log("found in the left, the node is", node);
+        return node;
+      } else {
+        this.insertNode(node.left, val);
+      }
+    } else {
+      //search right
+      if (node.val === val) {
+        console.log("found in the RIGHT, the node is", node);
+        return node;
+      } else {
+        this.searchNode(node.right, val);
+      }
+    }
   }
 }
 
