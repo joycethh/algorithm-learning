@@ -6,6 +6,7 @@ class Node {
   }
 }
 
+//Recurrsive Methods
 class BST {
   constructor() {
     this.root = null;
@@ -39,38 +40,28 @@ class BST {
   }
   //Search a node, Recurrsivly
   search(val) {
-    if (!this.root) return undefined;
-    if (val === this.root.val) return this.root;
-    searchNode(this.root, val);
-    return val;
+    return this.searchNode(this.root, val);
   }
   searchNode(node, val) {
-    if (node.val > val) {
-      //search left
-      if (node.val === val) {
-        console.log("found in the left, the node is", node);
-        return node;
-      } else {
-        this.insertNode(node.left, val);
-      }
+    if (node === null) return false;
+    if (val === node.val) return true;
+    if (val < node.val) {
+      //search Left
+      return this.searchNode(node.left, val);
     } else {
       //search right
-      if (node.val === val) {
-        console.log("found in the RIGHT, the node is", node);
-        return node;
-      } else {
-        this.searchNode(node.right, val);
-      }
+      return this.searchNode(node.right, val);
     }
   }
 }
 
+//Iterative Methods
 class BSTSIterate {
   constructor() {
     this.root = null;
   }
   //Insert a node, Iterativly
-  insertIterate(value) {
+  insert(value) {
     const newNode = new Node(value);
     if (!this.root) {
       this.root = newNode;
@@ -97,25 +88,29 @@ class BSTSIterate {
   }
 
   //Search a node, Iterativly
-  searchIterate(val) {
+  search(val) {
     if (!this.root) return undefined;
-    if (val === this.root.val) return val;
+
     let current = this.root;
     while (true) {
-      if (val === current.val) return val;
+      if (val === current.val) return current;
       if (val < current.val) {
         //search from the left
-        if (current.val === val) {
-          return val;
-        }
+        if (current.left === null) return undefined;
         current = current.left;
       } else {
-        if (current.val === val) {
-          return val;
-        }
+        //search RIGHT
+        if (current.right === null) return undefined;
         current = current.right;
       }
     }
   }
 }
 const bst = new BST();
+const bstIterate = new BSTSIterate();
+bstIterate.insert(10);
+bstIterate.insert(5);
+bstIterate.insert(8);
+bstIterate.insert(23);
+bstIterate.insert(12);
+bstIterate.insert(2);
