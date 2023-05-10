@@ -7,7 +7,7 @@ class Node {
 }
 
 //Recurrsive Methods
-class BST {
+class BSTRecurrive {
   constructor() {
     this.root = null;
   }
@@ -43,8 +43,8 @@ class BST {
     return this.searchNode(this.root, val);
   }
   searchNode(node, val) {
-    if (node === null) return false;
-    if (val === node.val) return true;
+    if (node === null) return undefined;
+    if (val === node.val) return node;
     if (val < node.val) {
       //search Left
       return this.searchNode(node.left, val);
@@ -106,11 +106,11 @@ class BSTSIterate {
     }
   }
 }
-const bst = new BST();
-const bstIterate = new BSTSIterate();
-bstIterate.insert(10);
-bstIterate.insert(5);
-bstIterate.insert(8);
-bstIterate.insert(23);
-bstIterate.insert(12);
-bstIterate.insert(2);
+const bst = new BSTRecurrive();
+// const bst = new BSTSIterate();
+bst.insert(10);
+bst.insert(5);
+bst.insert(8);
+bst.insert(23);
+bst.insert(12);
+bst.insert(2);
