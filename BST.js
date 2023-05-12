@@ -107,19 +107,20 @@ class BSTSIterate {
   }
   // Breadth First Search
   bfs() {
-    let node = this.root,
-      visited = [],
-      queue = [];
-    queue.push(node);
+    if (!this.root) return [];
+
+    const queue = [this.root];
+    const result = [];
 
     while (queue.length) {
-      node = queue.shift();
-      visited.push(node); // while the queque is not empty, dequeque the first element in the queue and push to our "visited" array
+      const node = queue.shift(); //while the queue is not empty, dequeue the first element in the queue
+      result.push(node.val); // add that element to our result array
 
-      if (node.left) queue.push(node.left); // in the meanwhile, we need to add the node's children to the end of the queque if any
+      if (node.left) queue.push(node.left); // in the meanwhile, add the element's children (if any) to the queue
       if (node.right) queue.push(node.right);
     }
-    return visited;
+
+    return result;
   }
 }
 const bst = new BSTRecurrive();
@@ -136,3 +137,4 @@ bst.insert(35);
 //          5      23
 //
 //        2  8    12  35
+//result should be [10, 5, 23, 2, 8, 12, 35]
