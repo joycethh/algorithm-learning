@@ -105,6 +105,22 @@ class BSTSIterate {
       }
     }
   }
+  // Breadth First Search
+  bfs() {
+    let node = this.root,
+      visited = [],
+      queue = [];
+    queue.push(node);
+
+    while (queue.length) {
+      node = queue.shift();
+      visited.push(node); // while the queque is not empty, dequeque the first element in the queue and push to our "visited" array
+
+      if (node.left) queue.push(node.left); // in the meanwhile, we need to add the node's children to the end of the queque if any
+      if (node.right) queue.push(node.right);
+    }
+    return visited;
+  }
 }
 const bst = new BSTRecurrive();
 // const bst = new BSTSIterate();
@@ -114,3 +130,9 @@ bst.insert(8);
 bst.insert(23);
 bst.insert(12);
 bst.insert(2);
+bst.insert(35);
+//             10
+//
+//          5      23
+//
+//        2  8    12  35
