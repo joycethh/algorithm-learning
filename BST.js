@@ -134,6 +134,17 @@ class BSTSIterate {
     traverse(this.root);
     return result;
   }
+  dfsPostOrder() {
+    const result = [];
+
+    const traverse = (node) => {
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+      result.push(node.val);
+    };
+    traverse(this.root);
+    return result;
+  }
 }
 // const bst = new BSTRecurrive();
 const bst = new BSTSIterate();
@@ -149,5 +160,6 @@ bst.insert(35);
 //          5      23
 //
 //        2  8    12  35
-// bfs result should be [10, 5, 23, 2, 8, 12, 35]
-// dfsPreorder result should be [10, 5, 2, 8, 23, 12, 35]
+// bfs  [10, 5, 23, 2, 8, 12, 35]
+// dfsPreorder  [10, 5, 2, 8, 23, 12, 35]
+// dfsPostOrder [2, 8, 5, 12, 35, 23, 10]
