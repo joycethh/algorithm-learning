@@ -122,9 +122,21 @@ class BSTSIterate {
 
     return result;
   }
+  dfsPreorder() {
+    const result = [];
+
+    const traverse = (node) => {
+      result.push(node.val);
+      if (node.left) traverse(node.left);
+      if (node.right) traverse(node.right);
+    };
+
+    traverse(this.root);
+    return result;
+  }
 }
-const bst = new BSTRecurrive();
-// const bst = new BSTSIterate();
+// const bst = new BSTRecurrive();
+const bst = new BSTSIterate();
 bst.insert(10);
 bst.insert(5);
 bst.insert(8);
@@ -137,4 +149,5 @@ bst.insert(35);
 //          5      23
 //
 //        2  8    12  35
-//result should be [10, 5, 23, 2, 8, 12, 35]
+// bfs result should be [10, 5, 23, 2, 8, 12, 35]
+// dfsPreorder result should be [10, 5, 2, 8, 23, 12, 35]
