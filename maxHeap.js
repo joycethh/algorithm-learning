@@ -24,10 +24,14 @@ class MaxHeap {
     return this.values;
   }
   extractMax() {
+    if (this.values.length === 0) return null;
     const max = this.values[0];
     const end = this.values.pop();
-    this.values[0] = end;
-    percolateDown();
+    if (this.values.length > 0) {
+      this.values[0] = end;
+      percolateDown();
+    }
+
     return max;
   }
   percolateDown() {
