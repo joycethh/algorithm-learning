@@ -33,6 +33,46 @@ class PiorityQueque {
     }
     return this.values.piority;
   }
+
+  dequeque() {
+    if (this.values.length === 0) return null;
+    const min = this.values[0];
+    const end = this.values.pop();
+    if (this.values.length > 0) {
+      this.values[0] = end;
+      percolateDown();
+    }
+    return min;
+  }
+  percolateDown() {
+    let idx = 0;
+    const length = this.values.length;
+    const element = this.values[0];
+
+    while (true) {
+      let leftIdx = 2 * idx + 1;
+      let rightIdx = 2 * idx + 2;
+      let swapIdx = null;
+      let leftChild, rightChild;
+
+      if (leftIdx < length) {
+        leftChild = this.values[leftIdx];
+        if (leftChild.piority < element.piority) {
+          swapIdx = leftIdx;
+        }
+      }
+
+      if (rightIdx < length) {
+        rightChild = this.values[rightIdx];
+        if (
+          (swapIdx !== null && rightChild.piority < leftChild.piority) ||
+          (swapIdx === null && rightChild.piority < element.piority)
+        ) {
+          swapIdx = rightIdx;
+        }
+      }
+    }
+  }
 }
 
 const minHeap = new PiorityQueque();
