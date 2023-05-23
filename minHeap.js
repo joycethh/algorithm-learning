@@ -11,7 +11,7 @@ class PiorityQueque {
     this.values = [];
   }
 
-  enqueque(val, piority) {
+  enqueue(val, piority) {
     let newNode = new Node(val, piority);
     this.values.push(newNode);
     this.bubbleUp();
@@ -34,13 +34,13 @@ class PiorityQueque {
     return this.values.piority;
   }
 
-  dequeque() {
+  dequeue() {
     if (this.values.length === 0) return null;
     const min = this.values[0];
     const end = this.values.pop();
     if (this.values.length > 0) {
       this.values[0] = end;
-      percolateDown();
+      this.percolateDown();
     }
     return min;
   }
@@ -71,6 +71,11 @@ class PiorityQueque {
           swapIdx = rightIdx;
         }
       }
+
+      if (swapIdx === null || !leftChild || !rightChild) break;
+      this.values[idx] = this.values[swapIdx];
+      this.values[swapIdx] = element;
+      idx = swapIdx;
     }
   }
 }
