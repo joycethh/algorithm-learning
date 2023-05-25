@@ -83,7 +83,19 @@ class HashTable {
     }
     return resultKeys; //[, , , [[key, value], [key, value]], [[key, value]], []]
   }
-  values() {}
+  values() {
+    let resultValues = [];
+    for (let i = 0; i < this.keyMap.length; i++) {
+      if (this.keyMap[i]) {
+        for (let j = 0; j < this.keyMap[i].length; j++) {
+          if (!resultValues.includes(this.keyMap[i][j][1])) {
+            resultValues.push(this.keyMap[i][j][0]);
+          }
+        }
+      }
+    }
+    return resultValues; //[, , , [[key, value], [key, value]], [[key, value]], []]
+  }
 }
 
 const ht = new HashTable();
