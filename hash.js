@@ -52,7 +52,7 @@ class HashTable {
     // stores the key-value pair in the hash table array via Seperate Chaining
     let index = this._hash(key); //index is the hashed key, and we want to store the key-value pair at this index
     if (!this.keyMap[index]) {
-      this.keyMap[index] = []; // [ , , , , [[], []], , , ]
+      this.keyMap[index] = []; // [ , , , , [[key, value], [key, value]], , , ]
     }
     this.keyMap[index].push([key, value]);
   }
@@ -70,6 +70,20 @@ class HashTable {
     }
     return undefined;
   }
+  keys() {
+    let resultKeys = [];
+    for (let i = 0; i < this.keyMap.length; i++) {
+      if (this.keyMap[i]) {
+        for (let j = 0; j < this.keyMap[i].length; j++) {
+          if (!resultKeys.includes(this.keyMap[i][j][0])) {
+            resultKeys.push(this.keyMap[i][j][0]);
+          }
+        }
+      }
+    }
+    return resultKeys; //[, , , [[key, value], [key, value]], [[key, value]], []]
+  }
+  values() {}
 }
 
 const ht = new HashTable();
