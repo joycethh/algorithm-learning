@@ -14,6 +14,15 @@ class Graph {
     this.adjacencyList[v1] = this.adjacencyList[v1].filter((el) => el !== v2);
     this.adjacencyList[v2] = this.adjacencyList[v2].filter((el) => el !== v1);
   }
+  removeVetex(vertex) {
+    const adjacentVertices = this.adjacencyList[vertex]; // find out the other vetex which have relation with //// Shanghai: (2) ['Kansas City', 'Detroit']
+    for (let i = 0; i < adjacentVertices.length; i++) {
+      const adjacentVertex = adjacentVertices[i];
+      this.removeEdge(vertex, adjacentVertex);
+    }
+    delete this.adjacencyList[vertex];
+    return this.adjacencyList;
+  }
 }
 
 const g = new Graph();
@@ -27,3 +36,11 @@ g.addEdge("Detroit", "Kansas City");
 g.addEdge("Kansas City", "Jefferson City");
 
 console.log(g.adjacencyList);
+//{Shanghai: Array(2), Kansas City: Array(3), Detroit: Array(2), Jefferson City: Array(1)}
+// Detroit: (2) ['Shanghai', 'Kansas City']
+// Jefferson City: ['Kansas City']
+// Kansas City: (3) ['Shanghai', 'Detroit', 'Jefferson City']
+// Shanghai: (2) ['Kansas City', 'Detroit']
+
+g.removeVetex("Shanghai");
+console.log("delete vetex", g.adjacencyList);
