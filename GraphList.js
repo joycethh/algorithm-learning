@@ -34,6 +34,7 @@ class Graph {
       if (!vertex) return null;
 
       if (!visited.hasOwnProperty(vertex)) {
+        //!visted[vertex]
         result.push(vertex);
         visited[vertex] = true;
 
@@ -45,6 +46,27 @@ class Graph {
 
     traverse(start);
     console.log("dfsRecursive", result);
+    return result;
+  }
+  depthFirstIterative(start) {
+    const stack = [];
+    stack.push(start);
+    const result = [];
+    const visited = {};
+
+    while (stack.length > 0) {
+      let vertex = stack.pop();
+
+      if (!visited[vertex]) {
+        result.push(vertex);
+        visited[vertex] = true;
+        this.adjacencyList[vertex].forEach((neighborVetex) => {
+          if (!visited[neighborVetex]) stack.push(neighborVetex);
+        });
+      }
+    }
+
+    console.log("dfsIterative", result);
     return result;
   }
 }
