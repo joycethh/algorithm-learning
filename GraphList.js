@@ -23,6 +23,30 @@ class Graph {
     delete this.adjacencyList[vertex];
     return this.adjacencyList;
   }
+  depthFirstRecursive(start) {
+    //"start" represents the staring vertax for the depth-first search
+    const result = [];
+    const visited = {};
+    const adjacencyList = this.adjacencyList;
+
+    const traverse = (vertex) => {
+      //"vertex" representsthe current vertex being visited
+      if (!vertex) return null;
+
+      if (!visited.hasOwnProperty(vertex)) {
+        result.push(vertex);
+        visited[vertex] = true;
+
+        adjacencyList[vertex].forEach((neighborVetex) => {
+          if (!visited[neighborVetex]) traverse(neighborVetex);
+        });
+      }
+    };
+
+    traverse(start);
+    console.log("dfsRecursive", result);
+    return result;
+  }
 }
 
 const g = new Graph();
