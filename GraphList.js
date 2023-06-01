@@ -60,6 +60,7 @@ class Graph {
       if (!visited[vertex]) {
         result.push(vertex);
         visited[vertex] = true;
+
         this.adjacencyList[vertex].forEach((neighborVetex) => {
           if (!visited[neighborVetex]) stack.push(neighborVetex);
         });
@@ -67,6 +68,26 @@ class Graph {
     }
 
     console.log("dfsIterative", result);
+    return result;
+  }
+  breadthFirstIterative(start) {
+    const queue = [start];
+    const result = [];
+    const visited = {};
+
+    while (queue.length > 0) {
+      let currentVertex = queue.shift();
+      if (!visited[currentVertex]) {
+        result.push(currentVertex);
+        visited[currentVertex] = true;
+
+        this.adjacencyList[currentVertex].forEach((neighborVetex) => {
+          if (!visited[neighborVetex]) queue.push(neighborVetex);
+        });
+      }
+    }
+
+    console.log("bfsIterative", result);
     return result;
   }
 }
@@ -90,3 +111,9 @@ console.log(g.adjacencyList);
 
 g.removeVetex("Shanghai");
 console.log("delete vetex", g.adjacencyList);
+g.depthFirstRecursive("Jefferson City");
+//dfsRecursive (4) ['Jefferson City', 'Kansas City', 'Shanghai', 'Detroit']
+g.depthFirstIterative("Jefferson City");
+//dfsIterative (4) ['Jefferson City', 'Kansas City', 'Detroit', 'Shanghai']
+g.breadthFirstIterative("Jefferson City");
+//bfsIterative (4) ['Jefferson City', 'Kansas City', 'Shanghai', 'Detroit']
