@@ -23,14 +23,15 @@ const fibRecursive = (n) => {
   let sum;
   sum = fibRecursive(n - 1) + fibRecursive(n - 2);
   return sum;
-}; /// O(2n)
+}; /// O(2^n)
+
 const fibRecursiveWithMemo = (n) => {
   let sums = { 1: 1, 2: 2 };
   if (!sums[n]) {
     sums[n] = fibRecursiveWithMemo(n - 1) + fibRecursiveWithMemo(n - 2);
   }
   return sums[n];
-};
+}; /// O(n)
 
 //Climbing Stairs-LeetCode
 var climbStairs = function (n) {
