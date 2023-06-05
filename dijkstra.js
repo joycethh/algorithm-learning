@@ -27,10 +27,12 @@ class WeightedGraph {
     this.adjacencyList[v2].push({ node: v1, weight });
   }
   dijka(start, end) {
-    const distance = {};
-    const previous = {};
+    //start = "A", end = "E"
+    const distance = {}; // distance = {A : 0, B: Infinity, C: Infinity....}
+    const previous = {}; // previous = {A : null, B: null...}
     const priorityQueue = new PriorityQueue();
-    const vertices = Object.keys(this.adjacencyList);
+    //priorityQueue = PriorityQueue{values: Array(6)} --- [0: {val: 'A',priority: 0}, 1: {val: "B", priority: Infinity}]
+    const vertices = Object.keys(this.adjacencyList); // vertices =(6) ["A", "B", 'C'...]
 
     //initialize distances & previous vertices
     vertices.forEach((vertex) => {
@@ -45,8 +47,7 @@ class WeightedGraph {
     });
 
     while (priorityQueue.values.length) {
-      const { val: currentVertex } = priorityQueue.dequeue(); //{val: 'A', piority: 0}
-      console.log("currentVertex", currentVertex); //currentVertex: "A"
+      const { val: currentVertex } = priorityQueue.dequeue(); //{val: 'A', piority: 0}  //currentVertex: "A"
       if (currentVertex === end) {
         // Shortest path found, reconstruct and return the path
         const path = [];
@@ -61,9 +62,14 @@ class WeightedGraph {
 
       if (currentVertex || distance[vertex] !== Infinity) {
         for (let neighborVetex of this.adjacencyList[currentVertex]) {
-          const { node: nextVertex, weight } = neighborVetex;
+          //currentVertex
+          const { node: nextVertex, weight } = neighborVetex; //nextVertex = "B", neighborVetex = {node: "B", weight: 4}
 
           const currentDistance = distance[currentVertex] + weight;
+          //currentDistance = 4
+          //distance = {A: 0, B: Inifinity, C:Infinity ....}
+          //currentVertex = "A", distance[currentVertex] = 0
+          //weight = 4
 
           if (currentDistance < distance[nextVertex]) {
             distance[nextVertex] = currentDistance;
