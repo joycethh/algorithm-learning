@@ -17,6 +17,14 @@ var fib = function (n) {
   return sum;
 };
 
+//Fabanacci Number--Recursive
+const fibRecursive = (n) => {
+  if (n <= 1) return n;
+  let sum;
+  sum = fibRecursive(n - 1) + fibRecursive(n - 2);
+  return sum;
+};
+
 //Climbing Stairs-LeetCode
 var climbStairs = function (n) {
   //approach 1, bottom to up
