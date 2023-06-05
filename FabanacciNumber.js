@@ -19,10 +19,17 @@ var fib = function (n) {
 
 //Fabanacci Number--Recursive
 const fibRecursive = (n) => {
-  if (n <= 1) return n;
+  if (n <= 2) return 1;
   let sum;
   sum = fibRecursive(n - 1) + fibRecursive(n - 2);
   return sum;
+}; /// O(2n)
+const fibRecursiveWithMemo = (n) => {
+  let sums = { 1: 1, 2: 2 };
+  if (!sums[n]) {
+    sums[n] = fibRecursiveWithMemo(n - 1) + fibRecursiveWithMemo(n - 2);
+  }
+  return sums[n];
 };
 
 //Climbing Stairs-LeetCode
