@@ -8,3 +8,5 @@ var runningSum = function (nums) {
   }
   return Object.values(sums);
 };
+
+//test 
