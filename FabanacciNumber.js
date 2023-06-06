@@ -1,9 +1,6 @@
 //Fabanacci Number--Dynamic Coding
-var fib = function (n) {
-  // take out the edge case when n=0, f(n) = 0， f(1) = 1;
-  // create two variable called n1, n2, n1 < n2
-  // loop through n, get the sum of n1 + n2
-  // while the loop goes, n1 will jump to n2 position, n2 become the sum
+const fib = (n) => {
+  //TABULATED, bottom-up manner
   if (n <= 1) return n;
   let n1 = 0,
     n2 = 1,
@@ -15,7 +12,7 @@ var fib = function (n) {
     n2 = sum;
   }
   return sum;
-};
+}; ///  TIME COMPLEXITY O(N), SPACE COMPLEXSITY O(1)
 
 //Fabanacci Number--Recursive
 const fibRecursive = (n) => {
@@ -23,7 +20,7 @@ const fibRecursive = (n) => {
   let sum;
   sum = fibRecursive(n - 1) + fibRecursive(n - 2);
   return sum;
-}; /// O(2^n)
+}; /// O(2^n) ------------ Problem with this solution is that we have to recalculate again and again
 
 const fibRecursiveWithMemo = (n) => {
   let sums = { 1: 1, 2: 2 };
@@ -31,7 +28,7 @@ const fibRecursiveWithMemo = (n) => {
     sums[n] = fibRecursiveWithMemo(n - 1) + fibRecursiveWithMemo(n - 2);
   }
   return sums[n];
-}; /// O(n)
+}; ///  TIME COMPLEXITY O(N), SPACE COMPLEXSITY O(N)
 
 //Climbing Stairs-LeetCode
 var climbStairs = function (n) {
