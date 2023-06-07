@@ -1,5 +1,4 @@
 //205. Isomorphic Strings
-
 var isIsomorphic = function (s, t) {
   if (s.length !== t.length) return false;
   const map = {};
@@ -57,3 +56,23 @@ var isIsomorphic = function (s, t) {
 };
 
 //isIsomorphic('shirts', 'shirks')
+
+//_____________________________________________________
+//392. Is Subsequence
+
+//two pointers approach
+function isSubsequence(s, t) {
+  let i = 0;
+  for (let j = 0; j < t.length; j++) {
+    if (s[i] == t[j]) {
+      i++;
+    }
+  }
+  return i === s.length;
+}
+//time-O(t), space-O(1)
+
+isSubsequence("hello", "hello world"); // true
+isSubsequence("sing", "sting"); // true
+isSubsequence("abc", "abracadabra"); // true
+isSubsequence("abc", "acb"); // false (order matters)
