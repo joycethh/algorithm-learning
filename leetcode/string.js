@@ -49,9 +49,11 @@ var isIsomorphic = function (s, t) {
       return false;
     }
 
-    sMap.set(sChar, tChar);
-    tMap.set(tChar, sChar);
+    sMap.set(sChar, tChar); //sMap = Map(5) {'s' => s, 'h'=> h, 'i'=> i, 'r'=> r, 't'=>'k}
+    tMap.set(tChar, sChar); //tMap = Map(5) {'s' => s, 'h'=> h, 'i'=> i, 'r'=> r, 'k'=>'t}
   }
 
   return true;
 };
+
+//isIsomorphic('shirts', 'shirks')
