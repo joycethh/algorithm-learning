@@ -60,7 +60,7 @@ var isIsomorphic = function (s, t) {
 //_____________________________________________________
 //392. Is Subsequence
 
-//two pointers approach
+//------- two pointers approach
 function isSubsequence(s, t) {
   let i = 0;
   for (let j = 0; j < t.length; j++) {
@@ -71,6 +71,69 @@ function isSubsequence(s, t) {
   return i === s.length;
 }
 //time-O(t), space-O(1)
+
+//----- DP Approach
+var isSubsequence = function (s, t) {
+  const m = s.length;
+  const n = t.length;
+
+  // Initialize dp array
+  const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(false)); //dp = Array(4) [
+  //0:(7)  [false, false, false, false, false, false, false],
+  //1: (7)  [false, false, false, false, false, false, false],
+  //2: (7)  [false, false, false, false, false, false, false],
+  //3: (7)   [false, false, false, false, false, false, false]
+  //]
+
+  // Set the first row to true
+  for (let j = 0; j <= n; j++) {
+    dp[0][j] = true;
+  }
+  // dp = Array(4) [
+  //0: (7)   [true, true, true, true, true, true, true],
+  //1: (7)  [false, false, false, false, false, false, false],
+  //2: (7)  [false, false, false, false, false, false, false],
+  //3: (7)   [false, false, false, false, false, false, false]
+  //]
+
+  // Fill the dp array
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (s[i] === t[j]) {
+        dp[i + 1][j + 1] = dp[i][j];
+        console.log("match case - dp[i][j]", dp[i][j]);
+        //first run, i=0, j=0, m=3, n=6, s="abc", t="ahbgdc", dp[1][1] = true
+        //dp: Array(4) [
+        // 0: (7) [true, true, true, true, true, true, true]
+        // 1: (7) [false, true, false, false, false, false, false] ---------//dp[1][1] = true
+        // 2: (7) [false, false, false, false, false, false, false]
+        // 3: (7) [false, false, false, false, false, false, false]
+        //]
+
+        //second run, i=0, j=1, m=3, n=6
+        //dp: Array(4) [
+        // 0: (7) [true, true, true, true, true, true, true]
+        // 1: (7) [false, true, true, false, false, false, false] ---------//dp[1][2] = dp[1][1] = true
+        // 2: (7) [false, false, false, false, false, false, false]
+        // 3: (7) [false, false, false, false, false, false, false]
+        //]
+
+        //third run, i=0, j=2, m=3, n=6, s[0]=a, t[2]=b
+        //dp: Array(4) [
+        // 0: (7) [true, true, true, true, true, true, true]
+        // 1: (7) [false, true, true, false, false, false, false] ---------//dp[1][3] = dp[1][2] = true
+        // 2: (7) [false, false, false, false, false, false, false]
+        // 3: (7) [false, false, false, false, false, false, false]
+        //]
+      } else {
+        console.log("NOTMATCH case - dp[i][j]", dp[i][j]);
+        dp[i + 1][j + 1] = dp[i + 1][j];
+      }
+    }
+  }
+
+  return dp[m][n];
+};
 
 isSubsequence("hello", "hello world"); // true
 isSubsequence("sing", "sting"); // true
